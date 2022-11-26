@@ -1,5 +1,5 @@
 # hangman.js
-**To create the classic guess-the-letter game with all the functions you might need**
+**To create the classic guess-the-word game with all the functions you might need**
 
 ## Notable Features
 
