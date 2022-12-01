@@ -1,5 +1,5 @@
 'use strict';
-import { HangMan } from '/hangman.js';
+import { HangMan } from './hangman.js';
 
 const game = new HangMan(10, ["rajat", "sumit", "raj", "singh", "naman", "amit", "aaron"]);
 getAccess();
