@@ -3,7 +3,7 @@ export { HangMan };
 
 function HangMan(tries = 7, customWords) {
     const returnWords = function() {
-        let words = ["apple", "orange", "bottle", "hogwarts"];
+        let words = ["horse", "door", "song", "trip", "bomb", "round", "treasure", "garbage", "park", "pirate", "state", "whistle", "palace", "baseball", "coal", "queen", "photograph", "computer", "hockey", "aircraft", "dog", "salt", "pepper", "key", "frog", "mattress", "pinwheel", "cake", "circus", "battery", "cowboy", "password", "bicycle", "skate", "electricity", "lightsaber", "thief", "teapot", "deep", "spring", "nature", "shallow", "toast", "outside", "man", "bowtie", "half", "spare", "wax", "light", "bulb", "platypus", "music"];
         if (customWords) {
             words = words.concat(customWords);
         }

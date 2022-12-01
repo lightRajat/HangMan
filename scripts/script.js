@@ -1,9 +1,14 @@
 'use strict';
 import { HangMan } from './hangman.js';
 
-const game = new HangMan(10, ["rajat", "sumit", "raj", "singh", "naman", "amit", "aaron"]);
-getAccess();
-init();
+ getAccess();
+ let game;
+ fetch('../res/words.txt').then(response => {
+    return response.text();
+ }).then(data => {
+    game = new HangMan(10, data.split(/\s+/).map(word => word.toLowerCase()));
+    init();
+ });
 
 function getAccess() {
     window.eleWord = document.querySelector('.word');

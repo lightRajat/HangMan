@@ -44,15 +44,15 @@ The module is *object-oriented* and considers the game-play to be a single objec
 
 1. **Link the main script** to the html head by assigning the `type` as ***module***.
 ```html
-<script type="module" src="script.js" defer></script>
+<script type="module" src="./PATH/TO/MAIN/SCRIPT.js" defer></script>
 ```
 2. **Import** the module to your script.
 ```javascript
-import { HangMan } from '/hangman.js';
+import { HangMan } from './PATH/TO/hangman.js';
 ```
 3. **Initialize** the game object with an optional argument representing the tries that should be given to the player *(defaults to 7)* and another optional argument representing a list, containing custom words to be available in the program apart from the default words.
 ```javascript
-const game = new HangMan(10, ["rajat", "sumit", "raj", "singh", "naman", "amit", "aaron"]);
+const game = new HangMan(10, WORD_LIST);
 ```
 4. **Use the *`guessed`*** variable to set the hidden word.
 ```javascript
