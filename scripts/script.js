@@ -3,7 +3,7 @@ import { HangMan } from './hangman.js';
 
  getAccess();
  let game;
- fetch('../res/words.txt').then(response => {
+ fetch('./../res/words.txt').then(response => {
     return response.text();
  }).then(data => {
     game = new HangMan(10, data.split(/\s+/).map(word => word.toLowerCase()));
