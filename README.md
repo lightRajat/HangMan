@@ -22,6 +22,10 @@
 
 Hangman is a classic guess-the-word game where the player has to guess a hidden word (represented by dashes or stars in place of every letter) by suggesting letters within a constrained number of tries. Every correct guess reveals the positions of guessed letter in the hidden word until the player runs out of tries or becomes successful in guessing the entire word.
 
+[Try out](https://alphadinu.github.io/HangMan/) the mini web-project made with this module:
+
+![Preview of the project](./res/preview.png)
+
 --------------------------------------
 
 ## Notable Features of this Module
