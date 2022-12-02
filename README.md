@@ -10,8 +10,11 @@
 1. [What is HangMan](#what-is-hangman)
 2. [Features](#notable-features)
 3. [Setup](#setup)
-4. [Program Flow](#general-flow-of-program)
-5. [Thank You Note](#thank-you-for-using)
+4. [Documentation](#precise-documentation)
+5. [Program Flow](#general-flow-of-program)
+6. [License](#what-can-you-do-with-this)
+7. [Contribute](#contribute)
+8. [Thank You Note](#thank-you-for-using)
 
 --------------------------------------
 
@@ -38,6 +41,31 @@ Hangman is a classic guess-the-word game where the player has to guess a hidden 
 
 --------------------------------------
 
+## Documentation
+
+The module hangman.js contains a single function **`HangMan()`**, which is used to imitate a class behaviour. This function has several variables and functions under private and public access.
+
+The following public variables and functions are accessible outside the module on the instance it is created upon.
+
+### Variables
+
+1. **`this.availableWords`** - This contains a *list of strings* representing all the default and custom words, that have not been used before for the player. When a word is used from this list, it is deleted. When it is empty, it can be refilled with all the words again, by calling the `this.resetWords()` function.
+2. **`this.isRunning`** - This contains a *boolean* value representing the state of the game.
+3. **`this.triesLeft`** - This contains a *number* representing the number of chances left with the user.
+4. **`this.chosenWord`** - This contains a *string* representing the randomly chosen word for the player to guess.
+5. **`this.guessed`** - This contains a *string* representing the currently exposed word. The letters still hidden are represented by asterisk (*).
+6. **`this.usedLetters`** - This contains a *list of strings* representing all the used letters which were not present in the word.
+
+### Functions
+
+1. **`this.guess(letter)`** - This function takes a single *string* parameter containing a single letter and returns a *string* representing the status symbol about the presence of the letter in the hidden word. All the status symbols have been discussed in the 7th point of the section [General Flow](#general-flow-of-program).
+2. **`this.restart(tries = 7)`** - This function restarts the game. If game is running, it returns a *string* **gameRunning** as status symbol; else, if there are no new words available, it returns a *string* **noWords** as status symbol; else, it sets `this.isRunning` to `true`, sets `this.triesLeft` to the passed argument or 7 as default, sets a new randomly chosen word from `this.availableWords`, sets the respective hidden string in `this.guessed` and truncates the list `this.usedLetters`.
+3. **`this.resetWords()`** - This function makes all the default and custom words available again inside the `this.availableWords` to be used.
+
+> The private constant variable **`HangMan.allWords`** contains a list of all the default and custom words as *string*s.
+
+--------------------------------------
+
 ## General Flow Of Program
 
 The module is *object-oriented* and considers the game-play to be a single object. Thus, the game is referenced as *game object*. The person playing the game is referenced as *player*. Though the user is free to use the module in whichever way ze wants to use, a general flow can be considered, which is shown below:
@@ -50,7 +78,7 @@ The module is *object-oriented* and considers the game-play to be a single objec
 ```javascript
 import { HangMan } from './PATH/TO/hangman.js';
 ```
-3. **Initialize** the game object with an optional argument representing the tries that should be given to the player *(defaults to 7)* and another optional argument representing a list, containing custom words to be available in the program apart from the default words.
+3. **Initialize** the game object with an optional *integer* parameter representing the tries that should be given to the player *(defaults to 7)* and another optional parameter representing a *list of strings*, containing custom words to be available in the program apart from the default words.
 ```javascript
 const game = new HangMan(10, WORD_LIST);
 ```
@@ -63,7 +91,7 @@ window.eleWord.textContent = game.guessed;
 window.triesBoxHeight = window.eleTries.clientHeight / game.triesLeft;
 ```
 > The code above is peculiar because the use of triesLeft here is implemented in a continuous way rather than just showing a discrete number of chances left with the player. Refer the website provided.
-6. **Use the *`check()`*** function to check if the letter taken from the player and passed as an argument is correct. It returns a status symbol in the form of a string.
+6. **Use the *`guess()`*** function to check if the letter taken from the player and passed as an argument is correct. It returns a status symbol in the form of a string.
 ```javascript
 const status = game.guess(input); //where input is a letter
 ```
@@ -93,6 +121,18 @@ if (game.restart() === 'noWords') {
 With this general flow, a smooth gameplay without any errors can be built.
 
 > Good luck making your next pastime mini-project.
+
+------------------------------------
+
+## What can You Do with this?
+
+This project is under *[GNU GPL-3.0 License](https://github.com/alphadinu/HangMan/blob/main/LICENSE.md)*. You can freely modify and use the source code. You can also redistribute it for personal and commercial purposes as long as it is under GNU GPL License as well and the source code is available to the public.
+
+------------------------------------
+
+## Contribute
+
+I am planning to expand the project I've made with this module to add functionalities such as Custom Settings, Word Classes, Multiplayer, Progress Saving and Profile Creation. The current goals of the project are defined at this project *[Wiki](https://github.com/alphadinu/HangMan/wiki)*. **I'd be very thankful** if you help me expand this project by forking it.
 
 ------------------------------------
 
