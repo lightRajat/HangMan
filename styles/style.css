@@ -31,10 +31,11 @@ main {
     grid-area: tries;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: stretch;
     background: linear-gradient(0deg, rgba(237,68,68,1) 0%, rgba(246,255,12,1) 50%, rgba(48,217,64,1) 100%);
 }
-.tries > * {
+.tries > div {
     height: 0;
     transition: 0.5s;
     background-color: var(--primary-bg);

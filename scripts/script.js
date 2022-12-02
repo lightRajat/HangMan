@@ -18,7 +18,8 @@ function getAccess() {
     window.eleGameOverLog = document.querySelector('.guess > span');
     window.eleUsed = document.querySelector('.used > p');
     window.eleMain = document.querySelector('main');
-    window.eleTries = document.querySelector('.tries');
+    window.eleTryCover = document.querySelector('.tries > div');
+    window.eleTry = document.querySelector('.tries');
 }
 function init() {
     window.eleWord.textContent = game.guessed;
@@ -120,20 +121,14 @@ function setUsed(letter) {
 }
 function setTries(status) {
     if (status === 0) {
-        const elem = document.createElement('div');
-        window.eleTries.appendChild(elem);
-        setTimeout(() => {
-            document.querySelector('.tries > div:last-child').style.height = `${window.triesBoxHeight}px`;
-        }, 10);
+        window.eleTryCover.style.height = `${window.eleTryCover.clientHeight + window.tryHeight}px`;
         return;
     }
-    document.querySelectorAll('.tries > div').forEach(element => {
-        element.style.height = 0;
-    });
+    window.eleTryCover.style.height = '0px';
     setTriesBoxHeight();
 }
 function setTriesBoxHeight() {
-    window.triesBoxHeight = window.eleTries.clientHeight / game.triesLeft;
+    window.tryHeight = window.eleTry.clientHeight / game.triesLeft;
 }
 function gameOver(status) {
     window.eleWord.textContent = game.chosenWord;
@@ -149,7 +144,6 @@ function restart() {
     }
     window.eleWord.textContent = game.guessed;
     window.eleMain.className = '';
-    window.eleTries.innerHTML = '';
     window.eleButton.textContent = "Guess";
     window.eleUsed.innerHTML = '';
     window.eleLog.textContent = "Enter any letter";
