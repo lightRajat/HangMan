@@ -113,7 +113,7 @@ const status = game.guess(input); //where input is a letter
     * **`triesLeft`** - to determine the number of chances left with the player.
     * **`guessed`** - to determine the currently revealed letters in the word.
     * **`usedLetters`** - to determine which letters have been used, which were not in the word.
-9. **Keep using `check()`** function on every turn until the game ends (i.e. `isRunning = false`). In case of defeat, use the **`chosenWord`** variable to show the chosen word, intended for the player to be discovered. In this state, `check()` function becomes unusable and returns **gameSuspended** status symbol.
+9. **Keep using `guess()`** function on every turn until the game ends (i.e. `isRunning = false`). In case of defeat, use the **`chosenWord`** variable to show the chosen word, intended for the player to be discovered. In this state, `guess()` function becomes unusable and returns **gameSuspended** status symbol.
 10. **Use `restart()`** function *(with an optional argument representing the tries that should be available to the player in the next turn)* to restart the game with a new, random word. All the variables will be re-initialized accordingly. This function is unusable when the game is running and returns the status symbol **gameRunning**. This function always sets a new word from the list of available words until the list is devoid of any new words. In this case, it returns **noWords** status symbol and does nothing. If this happens, **`resetWords()`** function needs to be used before calling `restart()` to make all the words available again to be randomized.
 ```javascript
 if (game.restart() === 'noWords') {
