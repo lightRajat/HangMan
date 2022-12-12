@@ -100,7 +100,7 @@ main.re-state .guess > span {
     margin-right: 10px;
     min-width: 200px;
 }
-button {
+main button {
     border-radius: 50px;
     border: none;
     padding: 10px 15px;
@@ -111,7 +111,7 @@ button {
     cursor: pointer;
     transition: 0.2s;
 }
-button:hover, button.pressed {
+main button:hover, main button.pressed {
     background-color: #f8a295;
     color: white;
     box-shadow: 0 0 18px var(--secondary-bg);
