@@ -199,6 +199,6 @@ main.re-state button {
 .opener:hover {
     box-shadow: 0 0 18px var(--secondary-bg);
 }
-.menu:has(.opener:hover), .menu:hover, .menu:has(.opener:focus-within) {
+.menu:has(.opener:hover), .menu:hover {
     transform: translate(0, 0);
 }
