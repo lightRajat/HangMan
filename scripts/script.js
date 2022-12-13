@@ -3,6 +3,7 @@ import { HangMan } from './hangman.js';
 
  getAccess();
  let game;
+ let triesOnRestart;
  fetch('./res/words.txt').then(response => {
     return response.text();
  }).then(data => {
@@ -20,6 +21,8 @@ function getAccess() {
     window.eleMain = document.querySelector('main');
     window.eleTryCover = document.querySelector('.tries > div');
     window.eleTry = document.querySelector('.tries');
+    window.eleDifficulty = document.querySelector('.buttons');
+    window.eleMenuPara = document.querySelector('.menu > p');
 }
 function init() {
     window.eleWord.textContent = game.guessed;
@@ -36,6 +39,11 @@ function init() {
         }
     });
     setTriesBoxHeight();
+
+    //setting the difficulty in buttons
+    window.eleDifficulty.children[0].onclick = () => setDifficulty(12);
+    window.eleDifficulty.children[1].onclick = () => setDifficulty(8);
+    window.eleDifficulty.children[2].onclick = () => setDifficulty(5);
 }
 function process() {
     let input = window.eleInput.value;
@@ -138,9 +146,9 @@ function gameOver(status) {
     window.eleButton.onclick = restart;
 }
 function restart() {
-    if (game.restart() === 'noWords') {
+    if (game.restart(triesOnRestart) === 'noWords') {
         game.resetWords();
-        game.restart();
+        game.restart(triesOnRestart);
     }
     window.eleWord.textContent = game.guessed;
     window.eleMain.className = '';
@@ -151,4 +159,9 @@ function restart() {
     window.eleButton.onclick = process;
     setTries(1);
     window.eleInput.focus();
+}
+function setDifficulty(tries) {
+    triesOnRestart = tries;
+    window.eleMenuPara.style.animationName = 'none';
+    requestAnimationFrame(() => window.eleMenuPara.style.animationName = '');
 }

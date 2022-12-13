@@ -184,6 +184,9 @@ main.re-state button {
 }
 .menu > p {
     margin: 8px 0 0 0;
+    transition: 0.5s;
+    animation-duration: 0.5s;
+    animation-name: emphasis;
 }
 .opener {
     position: absolute;
@@ -201,4 +204,16 @@ main.re-state button {
 }
 .menu:has(.opener:hover), .menu:hover {
     transform: translate(0, 0);
+}
+
+@keyframes emphasis {
+    from {
+        font-size: 100%;
+    }
+    50% {
+        font-size: 103%;
+    }
+    to {
+        font-size: 100%;
+    }
 }
