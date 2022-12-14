@@ -21,8 +21,6 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow: hidden;
-    border-radius: 10px 20px 20px 10px;
     display: grid;
     grid-template-columns: 25px auto;
     grid-template-areas: 'tries main' 'used used';
@@ -34,17 +32,20 @@ main {
     justify-content: flex-start;
     align-items: stretch;
     background: linear-gradient(0deg, rgba(237,68,68,1) 0%, rgba(246,255,12,1) 50%, rgba(48,217,64,1) 100%);
+    border-top-left-radius: 10px;
 }
 .tries > div {
     height: 0;
     transition: 0.5s;
     background-color: var(--primary-bg);
+    border-top-left-radius: 10px;
 }
 .main {
     height: 270px;
     grid-area: main;
     text-align: center;
     background-color: var(--primary-bg);
+    border-top-right-radius: 20px;
 }
 h2 {
     margin: 20px 0;
@@ -135,6 +136,7 @@ main.re-state button {
     min-height: 30px;
     max-height: max-content;
     width: 460px;
+    border-radius: 0 0 20px 10px;
 }
 .used > p {
     display: flex;
@@ -159,7 +161,7 @@ main.re-state button {
     text-align: center;
     border-radius: 0 0 15px 15px;
     color: var(--primary-fg);
-    transition: 0.4s 0.15s;
+    transition: 0.4s 0.1s;
     transform: translate(0, -90%);
 }
 .buttons {
@@ -170,7 +172,7 @@ main.re-state button {
     margin: 0 5px 0 5px;
     padding: 5px 10px;
     font-size: 115%;
-    font-family: inherit;
+    font-family: "Nunito", sans-serif;
     letter-spacing: 0.1em;
 }
 .buttons > button:first-child {
@@ -205,15 +207,31 @@ main.re-state button {
 .menu:has(.opener:hover), .menu:hover {
     transform: translate(0, 0);
 }
+.level {
+    background-color: var(--secondary-bg);
+    color: var(--secondary-fg);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -100%);
+    font-size: 120%;
+    font-family: "Nunito", sans-serif;
+    padding: 3px 12px;
+    border-radius: 5px 5px 0 0;
+    letter-spacing: 0.12em;
+}
 
 @keyframes emphasis {
     from {
         font-size: 100%;
+        font-weight: none;
     }
     50% {
         font-size: 103%;
+        font-weight: bold;
     }
     to {
         font-size: 100%;
+        font-weight: none;
     }
 }

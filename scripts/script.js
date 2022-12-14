@@ -3,11 +3,11 @@ import { HangMan } from './hangman.js';
 
  getAccess();
  let game;
- let triesOnRestart;
+ let nextLevel;
  fetch('./res/words.txt').then(response => {
     return response.text();
  }).then(data => {
-    game = new HangMan(10, data.split(/\s+/).map(word => word.toLowerCase()));
+    game = new HangMan(returnTries('easy'), data.split(/\s+/).map(word => word.toLowerCase()));
     init();
  });
 
@@ -23,6 +23,7 @@ function getAccess() {
     window.eleTry = document.querySelector('.tries');
     window.eleDifficulty = document.querySelector('.buttons');
     window.eleMenuPara = document.querySelector('.menu > p');
+    window.eleLevelInfo = document.querySelector('.level > span');
 }
 function init() {
     window.eleWord.textContent = game.guessed;
@@ -41,9 +42,9 @@ function init() {
     setTriesBoxHeight();
 
     //setting the difficulty in buttons
-    window.eleDifficulty.children[0].onclick = () => setDifficulty(12);
-    window.eleDifficulty.children[1].onclick = () => setDifficulty(8);
-    window.eleDifficulty.children[2].onclick = () => setDifficulty(5);
+    window.eleDifficulty.children[0].onclick = () => setDifficulty('easy');
+    window.eleDifficulty.children[1].onclick = () => setDifficulty('medium');
+    window.eleDifficulty.children[2].onclick = () => setDifficulty('hard');
 }
 function process() {
     let input = window.eleInput.value;
@@ -146,9 +147,9 @@ function gameOver(status) {
     window.eleButton.onclick = restart;
 }
 function restart() {
-    if (game.restart(triesOnRestart) === 'noWords') {
+    if (game.restart(returnTries(nextLevel)) === 'noWords') {
         game.resetWords();
-        game.restart(triesOnRestart);
+        game.restart(returnTries(nextLevel));
     }
     window.eleWord.textContent = game.guessed;
     window.eleMain.className = '';
@@ -160,8 +161,23 @@ function restart() {
     setTries(1);
     window.eleInput.focus();
 }
-function setDifficulty(tries) {
-    triesOnRestart = tries;
-    window.eleMenuPara.style.animationName = 'none';
-    requestAnimationFrame(() => window.eleMenuPara.style.animationName = '');
+function setDifficulty(level) {
+    nextLevel = level.toLowerCase();
+    if (game.isRunning) {
+        window.eleMenuPara.style.animationName = 'none';
+        requestAnimationFrame(() => window.eleMenuPara.style.animationName = '');
+    } else {
+        restart();
+    }
+    window.eleInput.focus();
+}
+function returnTries(level) {
+    const triesOnRestart = {
+        'easy': [12, '#3a9725'],
+        'medium': [8, '#f3ba21'],
+        'hard': [5, '#ee5240']
+     };
+     window.eleLevelInfo.textContent = level[0].toUpperCase() + level.substring(1);
+     window.eleLevelInfo.parentNode.style.backgroundColor = triesOnRestart[level.toLowerCase()][1];
+     return triesOnRestart[level.toLowerCase()][0];
 }
