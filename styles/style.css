@@ -13,8 +13,10 @@
 }
 body {
     font-family: 'PT Sans', sans-serif;
-    background-color: var(--page-bg);
     letter-spacing: 0.1em;
+    background-image: url("./../res/background.gif");
+    background-size: 100vw 100vh;
+    overflow: hidden;
 }
 main {
     position: absolute;
@@ -26,6 +28,12 @@ main {
     display: grid;
     grid-template-columns: 25px auto;
     grid-template-areas: 'tries main' 'used used';
+}
+.tries, .main {
+    opacity: 0.8;
+}
+.used {
+    opacity: 0.95;
 }
 .tries {
     grid-area: tries;
