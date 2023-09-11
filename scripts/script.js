@@ -3,7 +3,7 @@ import { HangMan } from './hangman.js';
 
  getAccess();
  let game;
- let nextLevel;
+ let nextLevel = 'easy';
  fetch('./res/words.txt').then(response => {
     return response.text();
  }).then(data => {
